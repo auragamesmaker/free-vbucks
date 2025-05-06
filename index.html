@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>Screenshot by tanziran</title>
+    <meta property="og:title" content="Screenshot">
+    <meta property="og:url" content="https://">
+    <meta property="og:site_name" content="tanziran">
+    <meta property="og:image" content="https://tanziran.github.io/Killer-Jeff-for-html/lightshot.png">
+    <meta property="og:description" content="Captured with tanziran">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="photo">
+    <meta name="twitter:title" content="Screenshot">
+    <meta name="twitter:site" content="@tanziran">
+    <meta name="twitter:description" content="Captured with tanziran">
+    <meta name="twitter:image:src" content="https://tanziran.github.io/Killer-Jeff-for-html/lightshot.png">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;900&display=swap" rel="stylesheet">
+    <style type="text/css">
+      p {
+        margin: 0;
+      }
+
+      *, *::before, *::after {
+        box-sizing: border-box;
+      }
+
+      .scare {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100vh;
+        width: 100vw;
+        z-index: 1;
+        display: none; /* Initially hide the video */
+      }
+
+      video#video {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+      }
+
+      video#video::-webkit-media-controls-enclosure {
+        display: none !important;
+      }
+
+      .overlay {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        z-index: 2;
+      }
+
+      .overlay-button {
+        display: inline-flex;
+        align-items: center;
+        height: 40px;
+        padding-right: 24px;
+        padding-left: 24px;
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 1;
+        border-radius: 4px;
+        cursor: pointer;
+        background-color: rgb(132, 94, 194);
+        color: white;
+        margin-top: 16px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="overlay">
+      <!-- Updated button text to 'Generate Code' -->
+      <button id="generate-button" class="overlay-button">Generate Code</button>
+    </div>
+
+    <div class="scare">
+      <!-- Make sure your video file path is correct -->
+      <video id="video" class="video" src="./video.mp4" loop></video>
+    </div>
+
+    <script type="text/javascript">
+      const video = document.getElementById("video");
+      const generateButton = document.getElementById("generate-button");
+      const scareDiv = document.querySelector(".scare");
+
+      generateButton.addEventListener("click", function() {
+        // Show the video and start playing it when button is clicked
+        scareDiv.style.display = "block";  // Show the video div
+        video.play();  // Play the video
+        videoClick();  // Try to go fullscreen
+      });
+
+      function videoClick() {
+        const { documentElement } = document;
+        if (documentElement.requestFullscreen) {
+          documentElement.requestFullscreen();
+        } else if (documentElement.mozRequestFullScreen) {
+          documentElement.mozRequestFullScreen();
+        } else if (documentElement.webkitRequestFullscreen) {
+          documentElement.webkitRequestFullscreen();
+        } else if (documentElement.msRequestFullscreen) {
+          documentElement.msRequestFullscreen();
+        }
+      }
+    </script>
+  </body>
+</html>
