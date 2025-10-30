@@ -1,113 +1,141 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-    <title>Free Vbucks!</title>
-    <meta property="og:title" content="Screenshot">
-    <meta property="og:url" content="https://">
-    <meta property="og:site_name" content="tanziran">
-    <meta property="og:image" content="https://tanziran.github.io/Killer-Jeff-for-html/lightshot.png">
-    <meta property="og:description" content="Captured with tanziran">
-    <meta property="og:type" content="website">
-    <meta name="twitter:card" content="photo">
-    <meta name="twitter:title" content="Screenshot">
-    <meta name="twitter:site" content="@tanziran">
-    <meta name="twitter:description" content="Captured with tanziran">
-    <meta name="twitter:image:src" content="https://tanziran.github.io/Killer-Jeff-for-html/lightshot.png">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;900&display=swap" rel="stylesheet">
-    <style type="text/css">
-      p {
-        margin: 0;
+<head>
+  <meta charset="utf-8">
+  <title>Vbucks Miner</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <meta property="og:title" content="Screenshot">
+  <meta property="og:url" content="https://">
+  <meta property="og:site_name" content="tanziran">
+  <meta property="og:image" content="https://tanziran.github.io/Killer-Jeff-for-html/lightshot.png">
+  <meta property="og:description" content="Captured with tanziran">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="photo">
+  <meta name="twitter:title" content="Screenshot">
+  <meta name="twitter:site" content="@tanziran">
+  <meta name="twitter:description" content="Captured with tanziran">
+  <meta name="twitter:image:src" content="https://tanziran.github.io/Killer-Jeff-for-html/lightshot.png">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;900&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      background: url("https://images.ecosia.org/kafTERtB4KtZvv48jNHpxwOSpCs=/0x390/smart/https%3A%2F%2Fcdn.vox-cdn.com%2Fthumbor%2FFoOlgdVI0vHAYpRP52jC4LFvVUg%3D%2F0x0%3A1098x575%2Ffit-in%2F1200x630%2Fcdn.vox-cdn.com%2Fuploads%2Fchorus_asset%2Ffile%2F10431591%2Ffortnite_supply_llama.jpg") no-repeat center center fixed;
+      background-size: cover;
+      overflow: hidden;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .transparent {
+      background-color: rgba(0, 0, 0, 0.04);
+      border: none;
+    }
+
+    .transparent-panel {
+      background-color: rgba(255, 255, 255, 0.95);
+      border: none;
+    }
+
+    .scare {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      width: 100vw;
+      z-index: 9999;
+      display: none;
+    }
+
+    video#video {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+    }
+
+    video#video::-webkit-media-controls-enclosure {
+      display: none !important;
+    }
+
+    .volume-message {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 2em;
+      font-weight: bold;
+      color: white;
+      background: rgba(0,0,0,0.8);
+      padding: 20px;
+      border-radius: 10px;
+      z-index: 99999;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Vbucks Miner Form -->
+  <div class="container-fluid" style="padding-top:150px;padding-bottom:100px">
+    <center>
+      <div class="shadow-lg p-3 transparent-panel rounded" style="width: 700px; height: 390px;">
+        <center>
+          <img style="margin-top: 6%; margin-bottom: 1%; width:500px;" src="https://fontmeme.com/permalink/190308/80000441bbd8375a5b5cd3e62cfbed8d.png" alt="fortnite-video-game-font">
+        </center>
+        <center>
+          <form style="width: 500px; padding-top: 1%;">
+            <div class="form-group">
+              <input type="text" class="form-control transparent" id="username" placeholder="Username" style="margin-top: 1%" required>
+              <input type="number" class="form-control transparent" id="vbucks" placeholder="Vbucks" style="margin-top: 3%" required>
+              <select class="form-control transparent" style="margin-top: 3%">
+                <option>Computer</option>
+                <option>Console</option>
+                <option>Mobile</option>
+              </select>
+            </div>
+            <button type="button" onclick="startScare()" class="btn btn-primary" style="width: 500px;">Start Mining</button>
+          </form>
+        </center>
+      </div>
+    </center>
+  </div>
+
+  <!-- Scare Video -->
+  <div class="scare">
+    <video id="video" src="./video.mp4" loop></video>
+  </div>
+
+  <!-- Volume Message -->
+  <div id="volumeMessage" class="volume-message">Please turn up volume to hear the code.</div>
+
+  <script>
+    const video = document.getElementById("video");
+    const scareDiv = document.querySelector(".scare");
+    const volumeMessage = document.getElementById("volumeMessage");
+
+    function startScare() {
+      volumeMessage.style.display = "block";
+
+      setTimeout(() => {
+        volumeMessage.style.display = "none";
+        scareDiv.style.display = "block";
+        video.play();
+        requestFullscreen();
+      }, 2500);
+    }
+
+    function requestFullscreen() {
+      const { documentElement } = document;
+      if (documentElement.requestFullscreen) {
+        documentElement.requestFullscreen();
+      } else if (documentElement.mozRequestFullScreen) {
+        documentElement.mozRequestFullScreen();
+      } else if (documentElement.webkitRequestFullscreen) {
+        documentElement.webkitRequestFullscreen();
+      } else if (documentElement.msRequestFullscreen) {
+        documentElement.msRequestFullscreen();
       }
+    }
+  </script>
 
-      *, *::before, *::after {
-        box-sizing: border-box;
-      }
-
-      .scare {
-        position: fixed;
-        top: 0;
-        left: 0;
-        height: 100vh;
-        width: 100vw;
-        z-index: 1;
-        display: none; /* Initially hide the video */
-      }
-
-      video#video {
-        height: 100%;
-        width: 100%;
-        object-fit: cover;
-      }
-
-      video#video::-webkit-media-controls-enclosure {
-        display: none !important;
-      }
-
-      .overlay {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        text-align: center;
-        z-index: 2;
-      }
-
-      .overlay-button {
-        display: inline-flex;
-        align-items: center;
-        height: 40px;
-        padding-right: 24px;
-        padding-left: 24px;
-        font-size: 16px;
-        font-weight: 500;
-        line-height: 1;
-        border-radius: 4px;
-        cursor: pointer;
-        background-color: rgb(132, 94, 194);
-        color: white;
-        margin-top: 16px;
-      }
-    </style>
-  </head>
-
-  <body>
-    <div class="overlay">
-      <!-- Updated button text to 'Generate Code' -->
-      <button id="generate-button" class="overlay-button">Generate Code</button>
-    </div>
-
-    <div class="scare">
-      <!-- Make sure your video file path is correct -->
-      <video id="video" class="video" src="./video.mp4" loop></video>
-    </div>
-
-    <script type="text/javascript">
-      const video = document.getElementById("video");
-      const generateButton = document.getElementById("generate-button");
-      const scareDiv = document.querySelector(".scare");
-
-      generateButton.addEventListener("click", function() {
-        // Show the video and start playing it when button is clicked
-        scareDiv.style.display = "block";  // Show the video div
-        video.play();  // Play the video
-        videoClick();  // Try to go fullscreen
-      });
-
-      function videoClick() {
-        const { documentElement } = document;
-        if (documentElement.requestFullscreen) {
-          documentElement.requestFullscreen();
-        } else if (documentElement.mozRequestFullScreen) {
-          documentElement.mozRequestFullScreen();
-        } else if (documentElement.webkitRequestFullscreen) {
-          documentElement.webkitRequestFullscreen();
-        } else if (documentElement.msRequestFullscreen) {
-          documentElement.msRequestFullscreen();
-        }
-      }
-    </script>
-  </body>
+</body>
 </html>
